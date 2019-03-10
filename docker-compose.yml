@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    build: .
+  grafana:
+    image: "grafana/grafana:latest"
+    container_name: grafana
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    ports:
+      - "3000:3000"
+
+  influxdb:
+    image: "influxdb:latest"
+    container_name: "influxdb"
+    ports: 
+      - "8083:8083"
+      - "8086:8086"
+      - "8089:8089"
