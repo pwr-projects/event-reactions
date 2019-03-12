@@ -1,0 +1,25 @@
+version: "3"
+services:
+  app:
+    container_name: event-reactions
+    build:
+      context: .
+      dockerfile: app.dockerfile
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    ports:
+      - "3000:3000"
+
+  influxdb:
+    container_name: influxdb
+    build:
+      context: .
+      dockerfile: influxdb.dockerfile
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+      - "8089:8089"
